@@ -1,0 +1,135 @@
+{
+  "name": "MeuRitmoBot",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "b15140e4-a2ed-41fc-84af-95168f8e59a3",
+      "name": "Telegram Trigger",
+      "webhookId": "a0c25776-c980-400b-8b37-b96018863bd0",
+      "credentials": {
+        "telegramApi": {
+          "id": "5ZzBDTaRanm1uG5l",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "Você é o MeuRitmo 🏃‍♂️💧, um assistente de saúde pessoal. Fale sempre em Português do Brasil. Seja motivador e breve. Se for a primeira mensagem, apresente-se. Se o usuário disser que bebeu água, parabenize."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d3e688f5-4998-4f7c-bf1f-84b819b6268d",
+      "name": "AI Agent",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        208,
+        128
+      ],
+      "id": "3caf1715-1bf2-43fe-b4ae-7e14e6aae311",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "MFVMvdG2QfwF4v0i",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        560,
+        0
+      ],
+      "id": "f936c8ed-661c-4814-82f2-0692e11241be",
+      "name": "Send a text message",
+      "webhookId": "42e5eecb-479d-4eca-b13a-90ce7e088a6d",
+      "credentials": {
+        "telegramApi": {
+          "id": "5ZzBDTaRanm1uG5l",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "548516d9-18f7-45d6-b768-e5cf0a1508b8",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e1a2d4ca2a0732e5828de5b3d8493db9cd72fdf564b9c2c0c1d33e3618520427"
+  },
+  "id": "vxcWzSUvDekl7nr0",
+  "tags": []
+}
