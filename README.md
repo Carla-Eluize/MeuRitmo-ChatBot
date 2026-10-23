@@ -1,21 +1,25 @@
 # MeuRitmo-ChatBot
 
-Protótipo de Assistente de Saúde e Bem-Estar desenvolvido como projeto acadêmico utilizando conceitos de Inteligência Artificial.
+Chatbot de saúde e bem-estar desenvolvido como projeto acadêmico.
 
-## Descrição do Projeto
-Projeto criado com o objetivo de aplicar, na prática, os conhecimentos adquiridos no curso de Capacitação em Inteligência Artificial, explorando automação, lógica de processos e interação com o usuário.
+## Sobre o projeto
 
-O assistente tem como foco apoiar o usuário em rotinas de bem-estar, organização e acompanhamento de hábitos, utilizando fluxos automatizados e conceitos de IA.
+O MeuRitmo é um chatbot que conversa com o usuário pelo Telegram, ajudando a organizar a rotina e a criar lembretes.
 
-## Tecnologias e Conceitos Utilizados
-- Inteligência Artificial (conceitos)
-- Automação de Processos
-- n8n
-- Groq
-- Lógica de Programação
+## Como funciona
 
-## Contexto
-Projeto desenvolvido durante a Capacitação em Inteligência Artificial promovida pela FAPESQ, SECTIES e Governo da Paraíba.
+- O usuário envia mensagens pelo Telegram.
+- A inteligência artificial interpreta as mensagens e responde.
+- Algumas informações podem ser salvas em uma planilha do Google.
+- Os lembretes são consultados automaticamente e enviados pelo Telegram no horário definido.
 
-## Observação
-Projeto acadêmico com foco em aprendizado e aplicação prática. Em constante evolução.
+## Tecnologias utilizadas
+
+- **n8n:** para automatizar tarefas.
+- **Groq e Llama 3.3:** para gerar respostas.
+- **Telegram:** para conversar com o usuário.
+- **Google Sheets:** para guardar informações e lembretes.
+
+## Contexto acadêmico
+
+Projeto desenvolvido no contexto da formação em Inteligência Artificial, vinculado ao programa da FAPESQ/PB e da SECTIES/PB.
